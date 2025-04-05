@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import './App.css'
+import './index.css';
+import AppRouter from './config/Router';
+import Theme from './config/Theme/theme';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      
-    </>
+    <Theme theme={false}>
+      <div className='min-h-screen'>
+        <AppRouter />
+      </div>
+    </Theme>
   )
 }
 
