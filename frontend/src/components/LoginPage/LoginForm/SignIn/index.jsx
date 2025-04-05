@@ -1,6 +1,24 @@
+import { useFormik } from "formik";
 import CustomTextField from "../../../Shared/CustomTextField";
 
+import * as yup from "yup";
+
 const SignIn = () => {
+
+    const formik = useFormik({
+        initialValues: {
+          email: "",
+          password: "",
+        },
+        validationSchema: yup.object({
+          email: yup.string().email("Invalid email").required("Email is required"),
+          password: yup.string().min(6, "Minimum 6 characters").required("Password is required"),
+        }),
+        onSubmit: (values) => {
+          console.log("Form submitted:", values);
+        },
+      });
+    
     return (
         <div>
             <div className="mb-4">
@@ -12,7 +30,7 @@ const SignIn = () => {
                     required={true}
                     disabled={false}
                     error=""
-                    handleBlur={() => { }}
+                    handleBlur={formik.handleBlur}
                     inputClassName="!p-0"
                     rootClassName="!p-0"
                 />
