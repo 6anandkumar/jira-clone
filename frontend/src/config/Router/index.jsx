@@ -1,5 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "../../pages/LoginPage";
+import ProtectedRoute from "./ProtectedRoute";
+import { routeConfig } from "../../helpers/Route";
+import Layout from "../../components/Shared/Layout";
 
 const AppRouter = () => {
     const isAuthentication = false;
@@ -7,6 +10,22 @@ const AppRouter = () => {
         <div>
             <Routes>
                 <Route path="/" element={isAuthentication ? <Navigate to="/taskList" replace /> : <LoginPage />} />
+                {routeConfig.map(({ path, component, isProtectedRoute }, index) => (
+        <Route
+          key={index}
+          path={path}
+          element={
+            isProtectedRoute ? (
+              <ProtectedRoute>
+                <Layout>{component}</Layout>
+              </ProtectedRoute>
+            ) : (
+                <Route to="/" element={<LoginPage />} />
+            )
+          }
+        />
+      ))}
+
             </Routes>
         </div>
     )

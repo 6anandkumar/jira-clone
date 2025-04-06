@@ -4,6 +4,7 @@ import Theme from './config/Theme/theme';
 
 function App() {
 
+  console.log("7")
   return (
     <Theme theme={false}>
       <div className='min-h-screen'>
