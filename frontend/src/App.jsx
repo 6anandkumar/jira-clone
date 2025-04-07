@@ -8,7 +8,7 @@ function App() {
   return (
     <Theme theme={false}>
       <div className='min-h-screen'>
-        <AppRouter />
+        <AppRouter /> 
       </div>
     </Theme>
   )
