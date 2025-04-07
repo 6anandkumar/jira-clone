@@ -29,14 +29,6 @@ const LoginForm = () => {
                     </div>}
 
                 </div>
-                <div className="w-full mb-4">
-                    <Button
-                        variant="contained"
-                        className="rounded !w-full !py-2 !text-[16px] !font-medium"
-                    >
-                        {logInText ? "Sign In" : "Sign Up"}
-                    </Button>
-                </div>
             </div>
         </div>
     )

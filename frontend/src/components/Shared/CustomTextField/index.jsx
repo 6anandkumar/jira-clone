@@ -3,14 +3,17 @@ import { TextField } from "@mui/material"
 const CustomTextField = ({
     name,
     value,
+    touched,
+    error,
+    helperText,
     type,
+    placeholder,
+    handleChange,
+    handleBlur,
     required,
     disabled,
-    error,
-    handleBlur,
     inputClassName,
     rootClassName,
-    placeholder,
 }) => {
     return (
         <TextField
@@ -23,15 +26,18 @@ const CustomTextField = ({
          label=""
          error={error}
          name={name}
-        //  value={value}
+         value={value}
+         touched={touched}
+         onChange={handleChange}
          onBlur={handleBlur}
+         helperText={helperText}
          variant="outlined"
          slotProps={{
             input: {
               className: inputClassName || "",
             },
             root: {
-                className: rootClassName || "", // styles the wrapper/input container
+                className: rootClassName || "",
             },
           }}
         />

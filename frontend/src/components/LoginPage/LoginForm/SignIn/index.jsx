@@ -2,56 +2,70 @@ import { useFormik } from "formik";
 import CustomTextField from "../../../Shared/CustomTextField";
 
 import * as yup from "yup";
+import { Button } from "@mui/material";
+import { initialValues, validationSchema } from "../../../../helpers/SignIn";
 
 const SignIn = () => {
 
-    const formik = useFormik({
-        initialValues: {
-          email: "",
-          password: "",
-        },
-        validationSchema: yup.object({
-          email: yup.string().email("Invalid email").required("Email is required"),
-          password: yup.string().min(6, "Minimum 6 characters").required("Password is required"),
-        }),
-        onSubmit: (values) => {
-          console.log("Form submitted:", values);
-        },
+  const formik = useFormik({
+          initialValues: initialValues(),
+          validationSchema: validationSchema(),
+          onSuccess: (val) => {
+              console.log("val", val);
+          }
       });
-    
-    return (
-        <div>
-            <div className="mb-4">
-                <CustomTextField
-                    name="email"
-                    value=""
-                    type="text"
-                    placeholder="Enter Your Email"
-                    required={true}
-                    disabled={false}
-                    error=""
-                    handleBlur={formik.handleBlur}
-                    inputClassName="!p-0"
-                    rootClassName="!p-0"
-                />
-            </div>
 
-            <div className="mb-4">
-                <CustomTextField
-                    name="password"
-                    value=""
-                    type="password"
-                    placeholder="Enter Your Password"
-                    required={true}
-                    disabled={false}
-                    error=""
-                    handleBlur={() => { }}
-                    inputClassName="!p-0"
-                    rootClassName="!p-0"
-                />
-            </div>
-        </div>
-    )
+  return (
+    <div>
+      <div className="mb-4">
+        <CustomTextField
+          name="emailId"
+          label="Email Id"
+          type="text"
+          value={formik.values.emailId}
+          touched={formik.touched.emailId}
+          error={formik.touched.emailId && Boolean(formik.errors.emailId)}
+          helperText={formik.touched.emailId ? formik.errors.emailId : ""}
+          placeholder="Enter Your Email"
+          handleChange={formik.handleChange}
+          handleBlur={formik.handleBlur}
+          required={true}
+          disabled={false}
+          inputClassName="!p-0"
+          rootClassName="!p-0"
+        />
+      </div>
+
+      <div className="mb-4">
+        <CustomTextField
+          name="password"
+          label="Email Id"
+          type="text"
+          value={formik.values.password}
+          touched={formik.touched.password}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password ? formik.errors.password : ""}
+          placeholder="Enter Your Email"
+          handleChange={formik.handleChange}
+          handleBlur={formik.handleBlur}
+          required={true}
+          disabled={false}
+          inputClassName="!p-0"
+          rootClassName="!p-0"
+        />
+      </div>
+
+      <div className="w-full mb-4">
+        <Button
+          variant="contained"
+          className="rounded !w-full !py-2 !text-[16px] !font-medium"
+          onClick={formik.handleSubmit}
+        >
+          Sign In
+        </Button>
+      </div>
+    </div>
+  )
 }
 
 export default SignIn;
