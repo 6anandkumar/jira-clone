@@ -1,19 +1,17 @@
 import { useFormik } from "formik";
 import CustomTextField from "../../../Shared/CustomTextField";
-
-import * as yup from "yup";
 import { Button } from "@mui/material";
 import { initialValues, validationSchema } from "../../../../helpers/SignIn";
 
 const SignIn = () => {
 
   const formik = useFormik({
-          initialValues: initialValues(),
-          validationSchema: validationSchema(),
-          onSuccess: (val) => {
-              console.log("val", val);
-          }
-      });
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    onSubmit: (val) => {
+      console.log("val", val);
+    }
+  });
 
   return (
     <div>
@@ -45,7 +43,7 @@ const SignIn = () => {
           touched={formik.touched.password}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password ? formik.errors.password : ""}
-          placeholder="Enter Your Email"
+          placeholder="Enter Your Password"
           handleChange={formik.handleChange}
           handleBlur={formik.handleBlur}
           required={true}
